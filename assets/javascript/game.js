@@ -5,13 +5,15 @@ const guessedLetters [];
 const guessesLeft = 9;
 
 const wins = 0;
-
 const losses = 0;
 
 document.onkeydown = function(event) {
-guessedLetters
 
-guessesLeft
+let letter = event.key.toLowerCase();
+
+guessedLetters.push(letter);
+
+guessesLeft--;
     
 }
 
