@@ -4,20 +4,34 @@ const guessedLetters [];
 
 const guessesLeft = 9;
 
+const randomPickedLetter = null;
+
 const wins = 0;
 const losses = 0;
 
-document.onkeydown = function(event) {
+const updateRandomLetter = function () {
+    randomPickedLetter = letters[Math.floor(Math.random() * letters.length)];
+};
 
-let letter = event.key.toLowerCase();
+const updateGuessedLetters = function () {
+    document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(", ");
+};
 
-guessedLetters.push(letter);
+const updateGuessesLeft = function() {
+    document.querySelector("#guesses-left").innerHTML = guessesLeft;
+};
 
-guessesLeft--;
-    
+document.onkeydown = function (event) {
+
+    let letter = event.key.toLowerCase();
+
+    guessedLetters.push(letter);
+
+    guessesLeft--;
+
 }
 
-const guessesSoFar = function() {
+const guessesSoFar = function () {
 
-    
+
 }
