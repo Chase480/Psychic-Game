@@ -1,6 +1,6 @@
 const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-const guessedLetters [];
+const guessedLetters = [];
 
 const guessesLeft = 9;
 
@@ -9,11 +9,8 @@ const randomPickedLetter = null;
 const wins = 0;
 const losses = 0;
 
-const updateRandomLetter = function () {
-    randomPickedLetter = letters[Math.floor(Math.random() * letters.length)];
-};
 
-const updateGuessedLetters = function () {
+const updateGuessedLetters = function() {
     document.querySelector("#guesses-so-far").innerHTML = guessedLetters.join(", ");
 };
 
@@ -21,17 +18,49 @@ const updateGuessesLeft = function() {
     document.querySelector("#guesses-left").innerHTML = guessesLeft;
 };
 
-document.onkeydown = function (event) {
+const updateRandomLetter = function() {
+    randomPickedLetter = letters[Math.floor(Math.random() * letters.length)];
+};
 
-    let letter = event.key.toLowerCase();
+const reset = function () {
+    guessedLetters = [];
+    guessesLeft = 9;
+    updateRandomLetter();
+    updateGuessesLeft();
+    updateGuessedLetters();
+
+};
+
+
+updateGuessesLeft();
+updateRandomLetter();
+
+
+document.onkeyup = function (event) {
+    guessesLeft--;
+
+    const letter = event.key.toLowerCase();
 
     guessedLetters.push(letter);
 
-    guessesLeft--;
+    guessesLeft();
+    guessedLetters();
 
-}
+    if (letter === randomPickedLetter) {
+        win++;
+        document.querySelector("#wins").innerHTML = wins;
 
-const guessesSoFar = function () {
+        reset();
+
+    }
+
+    if (guessesLeft === 0) {
+        losses++;
+        document.querySelector("#losses").innerHTML = losses;
+
+        reset();
+    }
 
 
-}
+};
+
