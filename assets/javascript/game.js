@@ -1,13 +1,13 @@
 const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-const guessedLetters = [];
+var guessedLetters = [];
 
-const guessesLeft = 9;
+var guessesLeft = 9;
 
-const randomPickedLetter = null;
+var randomPickedLetter = null;
 
-const wins = 0;
-const losses = 0;
+var wins = 0;
+var losses = 0;
 
 
 const updateGuessedLetters = function() {
@@ -36,18 +36,18 @@ updateGuessesLeft();
 updateRandomLetter();
 
 
-document.onkeyup = function (event) {
+document.onkeyup = function(event) {
     guessesLeft--;
 
     const letter = event.key.toLowerCase();
 
     guessedLetters.push(letter);
 
-    guessesLeft();
-    guessedLetters();
+    updateGuessesLeft();
+    updateGuessedLetters();
 
     if (letter === randomPickedLetter) {
-        win++;
+        wins++;
         document.querySelector("#wins").innerHTML = wins;
 
         reset();
